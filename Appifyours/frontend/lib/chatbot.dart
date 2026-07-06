@@ -1,18 +1,14 @@
-
-
-
 import 'package:flutter/material.dart';
-
 import 'services/api_service.dart';
 import 'services/gemini_service.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'main.dart';
 
-class ChatBotPage extends StatefulWidget {
+class ChatBotPage extends StatefulWidget
+ {
   final String shopName;
   final String appName;
-
   const ChatBotPage({
     super.key,
     required this.shopName,
@@ -22,29 +18,26 @@ class ChatBotPage extends StatefulWidget {
   @override
   State<ChatBotPage> createState() => _ChatBotPageState();
 }
-
 class _ChatBotPageState extends State<ChatBotPage> {
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
-
   bool _checkingPremium = false;
   bool _isPremium = true;
   bool _isLoadingData = true;
   bool _isSendingMessage = false;
-
   final List<_ChatMessage> _messages = <_ChatMessage>[];
   final GeminiService _geminiService = GeminiService();
-
   List<Map<String, dynamic>> _products = [];
   Map<String, dynamic> _storeInfo = {};
-
   @override
-  void initState() {
+  void initState() 
+  {
     super.initState();
     _init();
   }
 
-  Future<void> _init() async {
+  Future<void> _init() async 
+  {
     bool premium = false;
     try {
       premium = await ApiService().hasActiveSubscription();
